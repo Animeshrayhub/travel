@@ -210,9 +210,17 @@ function initCounters() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 }); // lowered from 0.5 for better mobile triggering
 
-  counters.forEach(counter => observer.observe(counter));
+  counters.forEach(counter => {
+    // If element is already in viewport (above-fold), run immediately
+    const rect = counter.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setTimeout(() => animateCounter(counter), 400);
+    } else {
+      observer.observe(counter);
+    }
+  });
 }
 
 function animateCounter(el) {
