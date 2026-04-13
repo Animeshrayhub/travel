@@ -73,12 +73,11 @@ WSGI_APPLICATION = 'ma_mangala_travels.wsgi.application'
 
 
 # ─── Database ────────────────────────────────
-# On Vercel the filesystem is read-only at /var/task, so SQLite must go in /tmp.
-# Locally we use BASE_DIR/db.sqlite3 as usual.
-if os.environ.get('VERCEL'):
-    DB_PATH = Path('/tmp/db.sqlite3')
-else:
-    DB_PATH = BASE_DIR / 'db.sqlite3'
+# On Vercel, BASE_DIR resolves to /var/task which is READ-ONLY.
+# We detect this by path prefix and redirect SQLite to writable /tmp.
+# On Windows/local, BASE_DIR is d:\tisha so we use it directly.
+_ON_VERCEL = str(BASE_DIR).startswith('/var/')
+DB_PATH = Path('/tmp/db.sqlite3') if _ON_VERCEL else BASE_DIR / 'db.sqlite3'
 
 DATABASES = {
     'default': {

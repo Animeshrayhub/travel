@@ -19,10 +19,5 @@
       "src": "/(.*)",
       "dest": "ma_mangala_travels/wsgi.py"
     }
-  ],
-  "env": {
-    "VERCEL": "1",
-    "DJANGO_SETTINGS_MODULE": "ma_mangala_travels.settings",
-    "DJANGO_DEBUG": "False"
-  }
+  ]
 }
