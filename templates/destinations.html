@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Destinations — Puri, Chilika Lake, Bhubaneswar | Ma Mangala Travels{% endblock %}
+{% block meta_desc %}Explore Odisha's top destinations — Puri beach & Jagannath Temple, Chilika Lake dolphin safari, and Bhubaneswar ancient temples. Book your tour with Ma Mangala Travels.{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="margin-bottom:1rem;">📍 Explore Odisha</div>
+    <h1 class="page-hero-title">Our <span style="color:var(--gold);">Destinations</span></h1>
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'travels:home' %}">Home</a>
+      <span>›</span>
+      <span>Destinations</span>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────── -->
+{% for dest in destinations_data %}
+<section id="{{ dest.slug }}" {% if forloop.counter|divisibleby:2 %}style="background:var(--dark-2);"{% endif %}>
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">📍 {{ dest.distance }}</span>
+      <h2 class="section-title"><span>{{ dest.name }}</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">{{ dest.tagline }}</p>
+    </div>
+
+    <!-- Two-column layout -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:start;"
+         class="dest-layout" data-aos="fade-up">
+
+      <!-- Image -->
+      <div style="border-radius:var(--radius-lg); overflow:hidden; position:relative;">
+        <img src="{% static dest.image %}" alt="{{ dest.name }}" style="width:100%; height:400px; object-fit:cover; border-radius:var(--radius-lg); filter:brightness(0.9);">
+        <!-- Overlay badge -->
+        <div style="position:absolute; bottom:1.5rem; left:1.5rem; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); border:1px solid rgba(212,175,55,0.3); border-radius:10px; padding:0.75rem 1.25rem;">
+          <div style="color:var(--gold); font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;">Best Time</div>
+          <div style="color:var(--white); font-size:0.95rem; font-weight:600;">{{ dest.best_time }}</div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <p style="color:var(--text-secondary); line-height:1.9; margin-bottom:1.5rem; font-size:1rem;">{{ dest.description }}</p>
+
+        <!-- Highlights -->
+        <h4 style="color:var(--gold); font-size:0.85rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.75rem;">Key Highlights</h4>
+        <div class="destination-highlights" style="margin-bottom:1.75rem;">
+          {% for h in dest.highlights %}
+          <span class="highlight-chip">✓ {{ h }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Itinerary -->
+        <h4 style="color:var(--gold); font-size:0.85rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.75rem;">Sample Itinerary</h4>
+        <div class="itinerary-list">
+          {% for item in dest.itinerary %}
+          <div class="itinerary-item">
+            <span class="itinerary-day">{{ item.day }}</span>
+            <span class="itinerary-plan">{{ item.plan }}</span>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Route Map placeholder -->
+        <div class="map-placeholder">
+          <span style="font-size:2rem;">🗺️</span>
+          <div>
+            <strong>Route Map</strong>
+            <br><small>Live map integration — coming soon</small>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="margin-top:1.75rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="destBook{{ dest.slug }}">🚗 Book This Trip</a>
+          <a href="{% url 'travels:contact' %}" class="btn btn-outline">💬 Ask a Query</a>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+  </div>
+</section>
+{% endfor %}
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-content" data-aos="fade-up">
+    <h2>Ready to <span style="color:var(--gold);">Pack Your Bags?</span></h2>
+    <p>Choose your destination and let us handle everything else. Safe, comfortable, and memorable.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="destCtaBook">🚗 Book Now</a>
+      <a href="{% url 'travels:vehicles' %}" class="btn btn-outline">🚙 View Vehicles</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<style>
+  @media (max-width: 768px) {
+    .dest-layout { grid-template-columns: 1fr !important; }
+  }
+</style>
+{% endblock %}

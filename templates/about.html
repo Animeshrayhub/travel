@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Ma Mangala Travels — Trusted Odisha Tour Company{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="margin-bottom:1rem;">ℹ️ About Us</div>
+    <h1 class="page-hero-title">About <span style="color:var(--gold);">Ma Mangala</span></h1>
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'travels:home' %}">Home</a> › <span>About</span>
+    </div>
+  </div>
+</div>
+
+<!-- About Story -->
+<section>
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Image Side -->
+      <div class="about-image-wrap" data-aos="fade-right">
+        <img src="{% static 'images/puri_beach.png' %}" alt="Puri Beach — Ma Mangala Travels">
+        <!-- Stats overlay -->
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-number" data-target="500" data-suffix="+">0+</div>
+            <div class="stat-label">Happy Travelers</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" data-target="7" data-suffix=" Yrs">0 Yrs</div>
+            <div class="stat-label">Experience</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" data-target="3" data-suffix="">0</div>
+            <div class="stat-label">Destinations</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Side -->
+      <div data-aos="fade-left">
+        <span class="section-badge">🕌 Our Story</span>
+        <h2 class="section-title" style="text-align:left; margin-top:0.5rem;">
+          Rooted in <span>Odisha,</span><br>Born to Serve
+        </h2>
+        <div class="section-divider" style="margin:1rem 0;"></div>
+
+        <p style="color:var(--text-secondary); line-height:1.9; margin-bottom:1rem;">
+          {{ settings.about_text }}
+        </p>
+
+        <p style="color:var(--text-secondary); line-height:1.9; margin-bottom:1.5rem;">
+          We understand that travel is more than just reaching a destination — it's about the stories you create along the way.
+          That's why every journey with us is planned with care, guided by local knowledge, and delivered with a warm Odishan smile.
+        </p>
+
+        <!-- Values -->
+        <div class="values-list">
+          <div class="value-item">
+            <div class="value-icon">🛡️</div>
+            <div class="value-text">
+              <h4>Safety First</h4>
+              <p>All vehicles are regularly serviced and drivers are experienced and background-verified.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💰</div>
+            <div class="value-text">
+              <h4>Transparent Pricing</h4>
+              <p>No hidden costs. You see the estimate before booking. Final price confirmed by our team.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌍</div>
+            <div class="value-text">
+              <h4>Local Expertise</h4>
+              <p>Our drivers know every hidden gem, temple, and shortcut across Odisha.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">❤️</div>
+            <div class="value-text">
+              <h4>Community Focused</h4>
+              <p>We support local communities and promote responsible tourism across Odisha.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="aboutBookBtn">🚗 Book a Ride</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Our Coverage / Timeline -->
+<section style="background:var(--dark-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">🗓️ Our Journey</span>
+      <h2 class="section-title">Growing With <span>Odisha</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem;" data-aos="fade-up">
+      {% for milestone in milestones %}
+      <div style="text-align:center; padding:2rem 1rem; position:relative;">
+        <div style="width:56px; height:56px; background:linear-gradient(135deg,var(--gold),var(--gold-dark)); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-size:1.4rem;">{{ milestone.icon }}</div>
+        <div style="color:var(--gold); font-weight:800; font-size:1.1rem; margin-bottom:0.25rem;">{{ milestone.year }}</div>
+        <h4 style="font-size:1rem; margin-bottom:0.4rem;">{{ milestone.title }}</h4>
+        <p style="color:var(--text-secondary); font-size:0.83rem;">{{ milestone.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-content" data-aos="fade-up">
+    <h2>Travel with <span style="color:var(--gold);">Trust & Care</span></h2>
+    <p>Over 500 happy travelers have explored Odisha with us. Join the Ma Mangala family today.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="aboutCtaBook">🚗 Book Now</a>
+      <a href="{% url 'travels:contact' %}" class="btn btn-outline">📞 Contact Us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

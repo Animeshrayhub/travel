@@ -1,0 +1,444 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ma Mangala Travels — Discover the Soul of Odisha{% endblock %}
+{% block meta_desc %}Book trusted rides across Odisha. Explore Puri, Chilika Lake & Bhubaneswar with Ma Mangala Travels — local experts, great prices, safe journeys.{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════ -->
+<section class="hero">
+  <!-- Background Image -->
+  <div class="hero-bg" style="background-image: url('{% static 'images/hero_bg.png' %}');"></div>
+  <!-- Color Overlay -->
+  <div class="hero-overlay"></div>
+  <!-- Floating Particles -->
+  <div class="hero-particles"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <div class="hero-badge">
+      ✨ Odisha's Trusted Travel Partner
+    </div>
+
+    <h1 class="hero-title">
+      Discover the<br>
+      <span>Soul of Odisha</span>
+    </h1>
+
+    <p class="hero-tagline">
+      {{ settings.tagline }} — from the golden sands of Puri<br>
+      to the shimmering waters of Chilika Lake.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="heroBookBtn">
+        🚗 Book Your Ride
+      </a>
+      <a href="{% url 'travels:destinations' %}" class="btn btn-outline" id="heroDestBtn">
+        🗺️ Explore Destinations
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════ -->
+<section style="padding: 3rem 0; background: var(--dark-2); border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1);">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; text-align:center;">
+
+      <div data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-number" data-target="500" data-suffix="+">0+</div>
+        <div class="stat-label">Happy Travelers</div>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number" data-target="3" data-suffix="">0</div>
+        <div class="stat-label">Destinations Covered</div>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number" data-target="5" data-suffix="★">0★</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number" data-target="7" data-suffix=" yrs">0 yrs</div>
+        <div class="stat-label">In Business</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     DESTINATIONS SECTION
+═══════════════════════════════════════════════════ -->
+<section id="destinations">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">📍 Where to Go</span>
+      <h2 class="section-title">Explore <span>Odisha</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Three iconic destinations, each offering a unique window into the divine culture and natural beauty of Odisha.
+      </p>
+    </div>
+
+    <div class="destinations-grid">
+
+      <!-- Puri -->
+      <div class="destination-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="destination-img-wrap">
+          <img src="{% static 'images/puri_beach.png' %}" alt="Puri Beach and Jagannath Temple, Odisha" loading="lazy">
+          <div class="destination-img-overlay"></div>
+          <span class="destination-tag">Sacred & Scenic</span>
+        </div>
+        <div class="destination-body">
+          <h3 class="destination-name">Puri</h3>
+          <div class="destination-tagline">🙏 The Sacred Beach City</div>
+          <p class="destination-desc">Famous for the Jagannath Temple and its pristine golden beach. A blend of divine spirituality and coastal serenity.</p>
+          <div class="destination-meta">
+            <span class="destination-meta-item"><span class="icon">📍</span> 60 km from BBSR</span>
+            <span class="destination-meta-item"><span class="icon">⏱️</span> 2–3 Days Ideal</span>
+          </div>
+          <div class="destination-highlights">
+            <span class="highlight-chip">Jagannath Temple</span>
+            <span class="highlight-chip">Puri Beach</span>
+            <span class="highlight-chip">Rath Yatra</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chilika Lake -->
+      <div class="destination-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="destination-img-wrap">
+          <img src="{% static 'images/chilika_lake.png' %}" alt="Chilika Lake with migratory birds, Odisha" loading="lazy">
+          <div class="destination-img-overlay"></div>
+          <span class="destination-tag">Nature's Paradise</span>
+        </div>
+        <div class="destination-body">
+          <h3 class="destination-name">Chilika Lake</h3>
+          <div class="destination-tagline">🦩 Asia's Largest Brackish Lake</div>
+          <p class="destination-desc">Spot Irrawaddy dolphins, flamingos, and 160+ bird species on a magical boat safari through India's most celebrated lagoon.</p>
+          <div class="destination-meta">
+            <span class="destination-meta-item"><span class="icon">📍</span> 110 km from BBSR</span>
+            <span class="destination-meta-item"><span class="icon">⏱️</span> 1–2 Days Ideal</span>
+          </div>
+          <div class="destination-highlights">
+            <span class="highlight-chip">Dolphin Safari</span>
+            <span class="highlight-chip">Bird Watching</span>
+            <span class="highlight-chip">Kalijai Island</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bhubaneswar -->
+      <div class="destination-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="destination-img-wrap">
+          <img src="{% static 'images/bhubaneswar_temple.png' %}" alt="Lingaraj Temple, Bhubaneswar, Odisha" loading="lazy">
+          <div class="destination-img-overlay"></div>
+          <span class="destination-tag">Temple City</span>
+        </div>
+        <div class="destination-body">
+          <h3 class="destination-name">Bhubaneswar</h3>
+          <div class="destination-tagline">🏛️ Temple City of India</div>
+          <p class="destination-desc">Over 700 ancient temples dot this vibrant capital city. Home to the majestic Lingaraj Temple and prehistoric Udayagiri caves.</p>
+          <div class="destination-meta">
+            <span class="destination-meta-item"><span class="icon">📍</span> City Base</span>
+            <span class="destination-meta-item"><span class="icon">⏱️</span> 1–2 Days Ideal</span>
+          </div>
+          <div class="destination-highlights">
+            <span class="highlight-chip">Lingaraj Temple</span>
+            <span class="highlight-chip">Udayagiri Caves</span>
+            <span class="highlight-chip">State Museum</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" data-aos="fade-up">
+      <a href="{% url 'travels:destinations' %}" class="btn btn-outline">🗺️ View All Destinations</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TRAVEL PACKAGES
+═══════════════════════════════════════════════════ -->
+<section style="background: var(--dark-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">🗓️ Tour Packages</span>
+      <h2 class="section-title">Our <span>Travel Packages</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Carefully curated trips designed for a perfect Odisha experience.</p>
+    </div>
+
+    <div class="packages-grid">
+
+      <!-- 1-Day -->
+      <div class="package-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="package-header">
+          <div class="package-days">1</div>
+          <div class="package-night-label">DAY TOUR</div>
+          <div class="package-name">Quick Escape</div>
+        </div>
+        <div class="package-body">
+          <div class="package-feature"><span class="check">✓</span> Pick & drop from your hotel</div>
+          <div class="package-feature"><span class="check">✓</span> Puri or Chilika day trip</div>
+          <div class="package-feature"><span class="check">✓</span> AC vehicle included</div>
+          <div class="package-feature"><span class="check">✓</span> Experienced local driver</div>
+        </div>
+        <div class="package-price">
+          <div class="price-from">Starting from</div>
+          <div><span class="price-amount">₹1,200</span></div>
+          <div class="price-suffix">per person (approx)</div>
+        </div>
+      </div>
+
+      <!-- 2-Day -->
+      <div class="package-card popular" data-aos="fade-up" data-aos-delay="100">
+        <div class="package-header">
+          <div class="package-days">2</div>
+          <div class="package-night-label">DAYS / 1 NIGHT</div>
+          <div class="package-name">Puri Explorer</div>
+        </div>
+        <div class="package-body">
+          <div class="package-feature"><span class="check">✓</span> Puri beach & Jagannath Temple</div>
+          <div class="package-feature"><span class="check">✓</span> Konark Sun Temple visit</div>
+          <div class="package-feature"><span class="check">✓</span> Chilika Lake boat ride</div>
+          <div class="package-feature"><span class="check">✓</span> All transfers included</div>
+          <div class="package-feature"><span class="check">✓</span> 24/7 support</div>
+        </div>
+        <div class="package-price">
+          <div class="price-from">Starting from</div>
+          <div><span class="price-amount">₹2,800</span></div>
+          <div class="price-suffix">per person (approx)</div>
+        </div>
+      </div>
+
+      <!-- 3-Day -->
+      <div class="package-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="package-header">
+          <div class="package-days">3</div>
+          <div class="package-night-label">DAYS / 2 NIGHTS</div>
+          <div class="package-name">Odisha Grand Tour</div>
+        </div>
+        <div class="package-body">
+          <div class="package-feature"><span class="check">✓</span> Bhubaneswar temples circuit</div>
+          <div class="package-feature"><span class="check">✓</span> Puri beach + Jagannath</div>
+          <div class="package-feature"><span class="check">✓</span> Konark + Chilika Lake</div>
+          <div class="package-feature"><span class="check">✓</span> Premium SUV available</div>
+          <div class="package-feature"><span class="check">✓</span> Flexible itinerary</div>
+        </div>
+        <div class="package-price">
+          <div class="price-from">Starting from</div>
+          <div><span class="price-amount">₹4,500</span></div>
+          <div class="price-suffix">per person (approx)</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" data-aos="fade-up">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="packageBookBtn">📅 Book Any Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     VEHICLES SECTION
+═══════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">🚗 Fleet</span>
+      <h2 class="section-title">Our <span>Vehicles</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Choose the perfect vehicle for your travel style — from budget-friendly hatchbacks to spacious SUVs.</p>
+    </div>
+
+    {% if vehicles %}
+    <div class="vehicles-grid">
+      {% for vehicle in vehicles %}
+      <div class="vehicle-card {% if vehicle.car_type == 'sedan' %}featured{% endif %}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+        {% if vehicle.car_type == 'sedan' %}
+        <div class="vehicle-badge">Most Popular 🌟</div>
+        {% endif %}
+        <div class="vehicle-img-wrap">
+          <img src="{% static 'images/'|add:vehicle.car_type|add:'.png' %}" alt="{{ vehicle.name }}" loading="lazy">
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-type">{{ vehicle.get_car_type_display }}</div>
+          <h3 class="vehicle-name">{{ vehicle.name }}</h3>
+          <p class="vehicle-desc">{{ vehicle.description }}</p>
+          <div class="vehicle-specs">
+            <div class="spec-item">
+              <div class="spec-value">₹{{ vehicle.price_per_km }}</div>
+              <div class="spec-label">Per KM</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">{{ vehicle.capacity }}</div>
+              <div class="spec-label">Seats</div>
+            </div>
+          </div>
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="vehicleBookBtn{{ forloop.counter }}">Book This Car</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <!-- Fallback static cards if DB empty -->
+    <div class="vehicles-grid">
+      <div class="vehicle-card" data-aos="fade-up">
+        <div class="vehicle-img-wrap">
+          <img src="{% static 'images/hatchback.png' %}" alt="Hatchback car" loading="lazy">
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-type">Hatchback</div>
+          <h3 class="vehicle-name">Economy</h3>
+          <p class="vehicle-desc">Compact & fuel-efficient. Perfect for 2–4 passengers on city and short trips.</p>
+          <div class="vehicle-specs">
+            <div class="spec-item"><div class="spec-value">₹12</div><div class="spec-label">Per KM</div></div>
+            <div class="spec-item"><div class="spec-value">4</div><div class="spec-label">Seats</div></div>
+          </div>
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="staticBookHatch">Book Now</a>
+        </div>
+      </div>
+      <div class="vehicle-card featured" data-aos="fade-up" data-aos-delay="100">
+        <div class="vehicle-badge">Most Popular 🌟</div>
+        <div class="vehicle-img-wrap">
+          <img src="{% static 'images/sedan.png' %}" alt="Sedan car" loading="lazy">
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-type">Sedan</div>
+          <h3 class="vehicle-name">Comfort</h3>
+          <p class="vehicle-desc">Spacious and comfortable. Great for families on longer trips to Puri or Chilika.</p>
+          <div class="vehicle-specs">
+            <div class="spec-item"><div class="spec-value">₹16</div><div class="spec-label">Per KM</div></div>
+            <div class="spec-item"><div class="spec-value">5</div><div class="spec-label">Seats</div></div>
+          </div>
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="staticBookSedan">Book Now</a>
+        </div>
+      </div>
+      <div class="vehicle-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="vehicle-img-wrap">
+          <img src="{% static 'images/suv.png' %}" alt="SUV car" loading="lazy">
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-type">SUV</div>
+          <h3 class="vehicle-name">Premium</h3>
+          <p class="vehicle-desc">Ultimate comfort for groups or premium travelers. Handles any terrain with ease.</p>
+          <div class="vehicle-specs">
+            <div class="spec-item"><div class="spec-value">₹22</div><div class="spec-label">Per KM</div></div>
+            <div class="spec-item"><div class="spec-value">7</div><div class="spec-label">Seats</div></div>
+          </div>
+          <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="staticBookSUV">Book Now</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div style="text-align:center; margin-top:2.5rem;" data-aos="fade-up">
+      <a href="{% url 'travels:vehicles' %}" class="btn btn-outline">🚙 View All Vehicles & Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CUSTOMER REVIEWS
+═══════════════════════════════════════════════════ -->
+{% if reviews %}
+<section style="background: var(--dark-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">⭐ Testimonials</span>
+      <h2 class="section-title">What <span>Travelers Say</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="reviews-grid">
+      {% for review in reviews %}
+      <div class="review-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+        <div class="review-quote">"</div>
+        <p class="review-text">{{ review.comment }}</p>
+        <div class="review-footer">
+          <div class="review-avatar">{{ review.customer_name|first }}</div>
+          <div>
+            <div class="review-name">{{ review.customer_name }}</div>
+            {% if review.from_city %}<div class="review-city">📍 {{ review.from_city }}</div>{% endif %}
+            <div class="review-stars">
+              {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% else %}
+<!-- Static fallback reviews -->
+<section style="background: var(--dark-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">⭐ Testimonials</span>
+      <h2 class="section-title">What <span>Travelers Say</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="reviews-grid">
+      {% for review in default_reviews %}
+      <div class="review-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+        <div class="review-quote">"</div>
+        <p class="review-text">{{ review.text }}</p>
+        <div class="review-footer">
+          <div class="review-avatar">{{ review.name|first }}</div>
+          <div>
+            <div class="review-name">{{ review.name }}</div>
+            <div class="review-city">📍 {{ review.city }}</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container cta-content" data-aos="fade-up">
+    <h2>Ready to <span style="color:var(--gold);">Explore Odisha?</span></h2>
+    <p>Book your ride now and let Ma Mangala Travels take you on a journey you'll never forget.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="ctaBookBtn">🚗 Book Your Ride Now</a>
+      <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-whatsapp" id="ctaWhatsAppBtn">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Pass default reviews to template context if DB empty
+  const defaultReviews = [
+    { name: "Rahul Sharma", city: "Kolkata", text: "Ma Mangala Travels made our Puri trip unforgettable. The driver was punctual, the car was clean, and the service was excellent. Highly recommended!" },
+    { name: "Priya Patel", city: "Hyderabad", text: "Booked a sedan for 3 days across Odisha. The itinerary was perfect, and the team was very responsive on WhatsApp. Will book again!" },
+    { name: "Amit Kumar", city: "Delhi", text: "The Chilika Lake boat safari arranged through Ma Mangala was the highlight of our trip. Very authentic and well-organized. 5 stars!" },
+  ];
+</script>
+{% endblock %}

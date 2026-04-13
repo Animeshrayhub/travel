@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Ma Mangala Travels — Discover Odisha{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}Ma Mangala Travels — Trusted Odisha tourism company. Book rides to Puri, Chilika Lake, Bhubaneswar. Local expertise, comfortable vehicles, best prices.{% endblock %}">
+  <meta name="keywords" content="Odisha travel, Puri tour, Chilika Lake, Bhubaneswar tourism, car booking Odisha, Ma Mangala Travels">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <nav class="navbar" id="mainNavbar">
+    <a href="{% url 'travels:home' %}" class="nav-brand">
+      <div class="nav-brand-icon">🕌</div>
+      <div>
+        <span class="nav-brand-text">Ma Mangala Travels</span>
+        <span class="nav-brand-sub">Odisha Tourism</span>
+      </div>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="{% url 'travels:home' %}">Home</a>
+      <a href="{% url 'travels:destinations' %}">Destinations</a>
+      <a href="{% url 'travels:vehicles' %}">Vehicles</a>
+      <a href="{% url 'travels:gallery' %}">Gallery</a>
+      <a href="{% url 'travels:about' %}">About</a>
+      <a href="{% url 'travels:contact' %}">Contact</a>
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary nav-cta">Book Now 🚗</a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       FLASH MESSAGES
+  ═══════════════════════════════════════ -->
+  {% if messages %}
+    <div class="messages-container" style="position:fixed;top:calc(var(--nav-height)+1rem);left:50%;transform:translateX(-50%);z-index:999;width:min(500px,90vw);">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════ -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <div class="shimmer-divider"></div>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <div class="footer-brand-text">🕌 Ma Mangala Travels</div>
+          <p class="footer-desc">
+            Your trusted partner for exploring the divine and natural wonders of Odisha.
+            Comfortable rides, local expertise, and memories that last a lifetime.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="{% url 'travels:contact' %}" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <div class="footer-links">
+            <a href="{% url 'travels:home' %}" class="footer-link">→ Home</a>
+            <a href="{% url 'travels:destinations' %}" class="footer-link">→ Destinations</a>
+            <a href="{% url 'travels:vehicles' %}" class="footer-link">→ Our Vehicles</a>
+            <a href="{% url 'travels:gallery' %}" class="footer-link">→ Gallery</a>
+            <a href="{% url 'travels:booking' %}" class="footer-link">→ Book a Ride</a>
+          </div>
+        </div>
+
+        <!-- Destinations -->
+        <div>
+          <div class="footer-heading">Destinations</div>
+          <div class="footer-links">
+            <a href="{% url 'travels:destinations' %}#puri" class="footer-link">→ Puri</a>
+            <a href="{% url 'travels:destinations' %}#chilika" class="footer-link">→ Chilika Lake</a>
+            <a href="{% url 'travels:destinations' %}#bhubaneswar" class="footer-link">→ Bhubaneswar</a>
+            <a href="{% url 'travels:destinations' %}#konark" class="footer-link">→ Konark</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <div class="footer-heading">Contact</div>
+          <div class="footer-links">
+            <span class="footer-link">📍 Puri, Odisha, India</span>
+            <span class="footer-link">📞 +91 XXXXXXXXXX</span>
+            <a href="{% url 'travels:contact' %}" class="footer-link">💬 WhatsApp Us</a>
+            <a href="{% url 'travels:about' %}" class="footer-link">ℹ️ About Us</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2024 Ma Mangala Travels. All rights reserved. Made with ❤️ in Odisha.</p>
+        <div class="footer-policy">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════ -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

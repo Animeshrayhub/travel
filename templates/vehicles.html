@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Vehicles — Hatchback, Sedan, SUV | Ma Mangala Travels{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="margin-bottom:1rem;">🚗 Fleet</div>
+    <h1 class="page-hero-title">Our <span style="color:var(--gold);">Vehicles</span></h1>
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'travels:home' %}">Home</a> › <span>Vehicles</span>
+    </div>
+  </div>
+</div>
+
+<!-- Vehicles Section -->
+<section>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">🚗 Choose Your Ride</span>
+      <h2 class="section-title">Fleet & <span>Pricing</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">All vehicles are well-maintained, AC-equipped, and driven by experienced local drivers who know Odisha inside out.</p>
+    </div>
+
+    <div class="vehicles-grid">
+
+      {% if vehicles %}
+        {% for vehicle in vehicles %}
+        <div class="vehicle-card {% if vehicle.car_type == 'sedan' %}featured{% endif %}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+          {% if vehicle.car_type == 'sedan' %}
+          <div class="vehicle-badge">Most Popular 🌟</div>
+          {% endif %}
+
+          <div class="vehicle-img-wrap">
+            {% if vehicle.image %}
+              <img src="{{ vehicle.image.url }}" alt="{{ vehicle.name }}" loading="lazy">
+            {% else %}
+              <img src="{% static 'images/'|add:vehicle.car_type|add:'.png' %}" alt="{{ vehicle.name }}" loading="lazy">
+            {% endif %}
+          </div>
+
+          <div class="vehicle-body">
+            <div class="vehicle-type">{{ vehicle.get_car_type_display }}</div>
+            <h3 class="vehicle-name">{{ vehicle.name }}</h3>
+            <p class="vehicle-desc">{{ vehicle.description }}</p>
+
+            <div class="vehicle-specs">
+              <div class="spec-item">
+                <div class="spec-value">₹{{ vehicle.price_per_km }}</div>
+                <div class="spec-label">Per KM</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">{{ vehicle.capacity }}</div>
+                <div class="spec-label">Seats</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">₹{{ vehicle.fixed_daily_charge }}</div>
+                <div class="spec-label">Fixed / Day</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value" style="font-size:1rem;">AC</div>
+                <div class="spec-label">Equipped</div>
+              </div>
+            </div>
+
+            <div style="margin-bottom:1rem; font-size:0.82rem; color:var(--text-secondary); background:rgba(255,255,255,0.03); border-radius:8px; padding:0.75rem;">
+              💡 <strong style="color:var(--gold);">Price Formula:</strong>
+              (Distance × ₹{{ vehicle.price_per_km }}/km) + (Days × ₹{{ vehicle.fixed_daily_charge }}/day)
+            </div>
+
+            <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="vehBook{{ vehicle.id }}">
+              🚗 Book This Vehicle
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+
+      {% else %}
+        <!-- Static fallback -->
+        {% for car in static_vehicles %}
+        <div class="vehicle-card {% if car.type == 'sedan' %}featured{% endif %}" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+          {% if car.type == 'sedan' %}<div class="vehicle-badge">Most Popular 🌟</div>{% endif %}
+          <div class="vehicle-img-wrap">
+            <img src="{% static 'images/'|add:car.type|add:'.png' %}" alt="{{ car.name }}" loading="lazy">
+          </div>
+          <div class="vehicle-body">
+            <div class="vehicle-type">{{ car.type_display }}</div>
+            <h3 class="vehicle-name">{{ car.name }}</h3>
+            <p class="vehicle-desc">{{ car.desc }}</p>
+            <div class="vehicle-specs">
+              <div class="spec-item"><div class="spec-value">₹{{ car.per_km }}</div><div class="spec-label">Per KM</div></div>
+              <div class="spec-item"><div class="spec-value">{{ car.seats }}</div><div class="spec-label">Seats</div></div>
+              <div class="spec-item"><div class="spec-value">₹{{ car.per_day }}</div><div class="spec-label">Fixed/Day</div></div>
+              <div class="spec-item"><div class="spec-value" style="font-size:1rem;">AC</div><div class="spec-label">Equipped</div></div>
+            </div>
+            <a href="{% url 'travels:booking' %}" class="btn btn-primary" style="width:100%;justify-content:center;" id="staticVehBook{{ forloop.counter }}">Book This Vehicle</a>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+    </div><!-- end grid -->
+
+    <!-- Pricing table note -->
+    <div style="margin-top:3rem; background:var(--dark-card); border:1px solid rgba(212,175,55,0.15); border-radius:var(--radius-lg); padding:2rem;" data-aos="fade-up">
+      <h3 style="color:var(--gold); margin-bottom:1rem; font-size:1.2rem;">💡 How Pricing Works</h3>
+      <p style="color:var(--text-secondary); margin-bottom:1rem;">All prices are transparent and calculated as:</p>
+      <div style="background:rgba(212,175,55,0.05); border:1px solid rgba(212,175,55,0.2); border-radius:10px; padding:1rem; font-family:monospace; font-size:0.9rem; color:var(--gold);">
+        Estimated Price = (Total Distance km × Per KM Rate) + (Number of Days × Fixed Daily Charge)
+      </div>
+      <ul style="margin-top:1rem; color:var(--text-secondary); font-size:0.875rem; display:flex; flex-direction:column; gap:0.4rem;">
+        <li>✔ Bhubaneswar to Puri ≈ 60 km each way</li>
+        <li>✔ Bhubaneswar to Chilika ≈ 110 km each way</li>
+        <li>✔ Fuel, driver, and toll are included in base price</li>
+        <li>✔ Final price confirmed by admin after booking</li>
+        <li>✔ No hidden charges — what you see is what you pay</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container cta-content" data-aos="fade-up">
+    <h2>Pick Your <span style="color:var(--gold);">Perfect Ride</span></h2>
+    <p>Book now and our team will confirm your trip details within 2 hours.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="vehPageCtaBook">🚗 Book Now</a>
+      <a href="{% url 'travels:contact' %}" class="btn btn-outline">📞 Contact Us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

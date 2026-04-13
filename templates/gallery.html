@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Photo Gallery — Odisha Travels | Ma Mangala Travels{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="margin-bottom:1rem;">📸 Gallery</div>
+    <h1 class="page-hero-title">Travel <span style="color:var(--gold);">Gallery</span></h1>
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'travels:home' %}">Home</a> › <span>Gallery</span>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery -->
+<section>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">📷 Captured Moments</span>
+      <h2 class="section-title">Odisha Through <span>Our Lens</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Every picture tells a story. Here are some beautiful moments captured on our journeys across Odisha.
+        Click any image to view it full-screen.
+      </p>
+    </div>
+
+    {% if photos %}
+    <!-- Dynamic photos from admin -->
+    <div class="gallery-grid">
+      {% for photo in photos %}
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0 }}0" id="galleryItem{{ forloop.counter }}">
+        <img src="{{ photo.image.url }}" alt="{{ photo.title }}" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            {{ photo.title }}{% if photo.location %} — {{ photo.location }}{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Static gallery using our generated images -->
+    <div class="gallery-grid">
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="0" id="galleryPuri1">
+        <img src="{% static 'images/puri_beach.png' %}" alt="Puri Golden Beach" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🏖️ Puri Golden Beach</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="50" id="galleryChilika1">
+        <img src="{% static 'images/chilika_lake.png' %}" alt="Chilika Lake at Dawn" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🦩 Chilika Lake at Dawn</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100" id="galleryBbsr1">
+        <img src="{% static 'images/bhubaneswar_temple.png' %}" alt="Lingaraj Temple, Bhubaneswar" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🏛️ Lingaraj Temple, Bhubaneswar</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150" id="galleryHero1">
+        <img src="{% static 'images/hero_bg.png' %}" alt="Odisha Tourism Collage" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🌅 The Beauty of Odisha</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200" id="galleryPuri2">
+        <img src="{% static 'images/puri_beach.png' %}" alt="Sunrise at Puri Beach" loading="lazy" style="object-position:bottom;">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🌄 Sunrise at Puri Beach</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250" id="galleryChilika2">
+        <img src="{% static 'images/chilika_lake.png' %}" alt="Boat Safari — Chilika Lake" loading="lazy" style="object-position:top;">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">⛵ Boat Safari — Chilika Lake</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300" id="gallerySuv1">
+        <img src="{% static 'images/suv.png' %}" alt="Our Premium SUV Fleet" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🚙 Our Premium SUV Fleet</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350" id="gallerySedan1">
+        <img src="{% static 'images/sedan.png' %}" alt="Comfortable Sedan Rides" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">🚗 Comfortable Sedan Rides</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400" id="galleryBbsr2">
+        <img src="{% static 'images/bhubaneswar_temple.png' %}" alt="Ancient Temple Architecture" loading="lazy" style="object-position:top;">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">⛩️ Ancient Temple Architecture</div>
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+
+    <!-- Upload notice for admin -->
+    <div style="text-align:center; margin-top:2.5rem; color:var(--gray); font-size:0.85rem;" data-aos="fade-up">
+      📸 Add more photos via the <a href="/admin/travels/galleryphoto/add/" style="color:var(--gold);">Admin Panel</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-content" data-aos="fade-up">
+    <h2>Create Your Own <span style="color:var(--gold);">Memories</span></h2>
+    <p>Every trip becomes a gallery of memories. Start yours today with Ma Mangala Travels.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'travels:booking' %}" class="btn btn-primary" id="galleryCtaBook">🚗 Book Your Trip</a>
+      <a href="{% url 'travels:destinations' %}" class="btn btn-outline">🗺️ View Destinations</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
