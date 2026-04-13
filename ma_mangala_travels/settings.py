@@ -73,12 +73,17 @@ WSGI_APPLICATION = 'ma_mangala_travels.wsgi.application'
 
 
 # ─── Database ────────────────────────────────
-# SQLite for local + Vercel (Vercel has ephemeral filesystem, so use for demos)
-# For production persistence, switch to PostgreSQL via DATABASE_URL env var.
+# On Vercel the filesystem is read-only at /var/task, so SQLite must go in /tmp.
+# Locally we use BASE_DIR/db.sqlite3 as usual.
+if os.environ.get('VERCEL'):
+    DB_PATH = Path('/tmp/db.sqlite3')
+else:
+    DB_PATH = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_PATH,
     }
 }
 
