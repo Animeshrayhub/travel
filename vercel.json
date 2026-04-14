@@ -2,6 +2,10 @@
   "version": 2,
   "builds": [
     {
+      "src": "staticfiles/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "ma_mangala_travels/wsgi.py",
       "use": "@vercel/python",
       "config": {
@@ -11,6 +15,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/staticfiles/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "ma_mangala_travels/wsgi.py"
