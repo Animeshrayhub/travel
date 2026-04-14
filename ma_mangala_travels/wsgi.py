@@ -2,7 +2,6 @@
 WSGI config for Ma Mangala Travels.
 
 On Vercel: auto-runs migrate + seed_data on cold start since /tmp is ephemeral.
-Detection is path-based (/var/task) — more reliable than env vars on Vercel Lambda.
 Locally: standard Django WSGI app.
 """
 
@@ -41,3 +40,6 @@ if _ON_VERCEL:
 # ── Standard WSGI application ────────────────────────────────────────────────
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+
+# Vercel looks for `app` as the WSGI callable
+app = application
