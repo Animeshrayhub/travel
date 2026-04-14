@@ -20,12 +20,24 @@ SECRET_KEY = os.environ.get(
 # DEBUG: False in production. Set DJANGO_DEBUG=False on Vercel env vars.
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
+# Detect Vercel runtime using its standard environment variable
+_ON_VERCEL = os.environ.get('VERCEL') == '1'
+
 # Vercel domain + custom domain go here
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
     '*'
 ).split(',')
 
+# ─── Production Security Settings ────────────
+if _ON_VERCEL and not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000 # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # ─── Installed Apps ──────────────────────────
 INSTALLED_APPS = [
@@ -73,10 +85,9 @@ WSGI_APPLICATION = 'ma_mangala_travels.wsgi.application'
 
 
 # ─── Database ────────────────────────────────
-# On Vercel, BASE_DIR resolves to /var/task which is READ-ONLY.
-# We detect this by path prefix and redirect SQLite to writable /tmp.
+# On Vercel, BASE_DIR is read-only.
+# We detect Vercel using its standard environment variable and redirect SQLite to writable /tmp.
 # On Windows/local, BASE_DIR is d:\tisha so we use it directly.
-_ON_VERCEL = str(BASE_DIR).startswith('/var/')
 DB_PATH = Path('/tmp/db.sqlite3') if _ON_VERCEL else BASE_DIR / 'db.sqlite3'
 
 DATABASES = {
@@ -141,5 +152,5 @@ MESSAGE_TAGS = {
 # ─── CSRF trusted origins (Vercel URLs) ───────
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     'CSRF_TRUSTED_ORIGINS',
-    'http://localhost:8000,http://127.0.0.1:8000'
+    'http://localhost:8000,http://127.0.0.1:8000,https://*.vercel.app'
 ).split(',')

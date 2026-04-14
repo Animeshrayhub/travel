@@ -109,12 +109,12 @@
             <label class="form-label" for="id_destination">🗺️ Destination *</label>
             {{ form.destination }}
             <datalist id="destination_suggestions">
-              <option value="Puri">
-              <option value="Chilika Lake">
-              <option value="Bhubaneswar">
-              <option value="Konark">
-              <option value="Puri + Konark">
-              <option value="Puri + Chilika Lake">
+              <option value="Puri"></option>
+              <option value="Chilika Lake"></option>
+              <option value="Bhubaneswar"></option>
+              <option value="Konark"></option>
+              <option value="Puri + Konark"></option>
+              <option value="Puri + Chilika Lake"></option>
             </datalist>
             {% if form.destination.errors %}
               <div style="color:#f87171; font-size:0.8rem; margin-top:4px;">{{ form.destination.errors.0 }}</div>

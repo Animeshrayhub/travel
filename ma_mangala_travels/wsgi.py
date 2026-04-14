@@ -12,9 +12,8 @@ from pathlib import Path
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ma_mangala_travels.settings')
 
-# Detect Vercel runtime by its known filesystem path (no env var needed)
-_this_dir = Path(__file__).resolve().parent.parent   # = BASE_DIR
-_ON_VERCEL = str(_this_dir).startswith('/var/')
+# Detect Vercel runtime using the standard environment variable
+_ON_VERCEL = os.environ.get('VERCEL') == '1'
 
 # ── Vercel cold-start bootstrap ──────────────────────────────────────────────
 # /tmp is wiped on every new Lambda instance — run migrate + seed automatically.
